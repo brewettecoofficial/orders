@@ -111,7 +111,6 @@ body {
 /* PAYMENT */
 .payment {
   margin-top: 4rem;
-  text-align: center;
 }
 
 .gpay-qr {
@@ -142,3 +141,4 @@ input, textarea {
   font-size: 16px;
   font-weight: 400;
 }
+
