@@ -59,3 +59,14 @@ async function submitOrder() {
   }
 }
 
+function calculateTotal() {
+  let total = 0;
+
+  for (const item in order) {
+    total += order[item] * PRICES[item];
+  }
+
+  document.getElementById("totalAmount").innerText = `₹${total}`;
+  return total;
+}
+
