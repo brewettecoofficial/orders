@@ -85,4 +85,25 @@ body {
   .mobile-bar {
     display: none;
   }
+
+}
+
+/* CUSTOMER INPUTS */
+.customer-fields {
+  margin-bottom: 2rem;
+}
+
+.customer-fields input,
+.customer-fields textarea {
+  width: 100%;
+  padding: 0.9rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  border: 1px solid #111;
+  background: #fff;
+  border-radius: 6px;
+}
+
+.customer-fields textarea {
+  resize: none;
 }
