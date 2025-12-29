@@ -17,7 +17,7 @@ export async function handler(event) {
     `Hi Brewette! I'd like to order:\n${lines}`
   );
 
-  const whatsappNumber = "91XXXXXXXXXX"; // replace
+  const whatsappNumber = "918331809508"; // replace
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
 
   return {
