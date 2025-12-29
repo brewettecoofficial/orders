@@ -33,7 +33,7 @@ async function submitOrder() {
     });
 
     const data = await res.json();
-    window.location.href = data.whatsappUrl;
+    alert("Order received! We’ll get started shortly.");
 
   } catch {
     alert("Something went wrong. Try again.");
