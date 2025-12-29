@@ -10,7 +10,7 @@ export async function handler(event) {
   }
 
   const SHEET_WEBHOOK_URL =
-    "https://script.google.com/macros/s/AKfycbwn60HW0B_WzVpwYLmgaXB9Anacha-ym8EyCYrDIzHqejmmW0KCa9HOBJ5Ve9hRikBibA/exec"; // your script URL
+    "https://script.google.com/macros/s/AKfycbxykUBas8LgoAZZSgWTGV48zB0uQb3bid8gQYWYqIHcfIBL-G9tPBUr2Z68d0mvvtr0_A/exec"; // your script URL
 
   await fetch(SHEET_WEBHOOK_URL, {
     method: "POST",
