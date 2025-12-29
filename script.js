@@ -36,30 +36,30 @@ async function submitOrder() {
 
   const items = Object.entries(order)
     .filter(([_, qty]) => qty > 0)
-    .map(([name, qty]) => ({ name, qty }));
+    .map(([name, qty]) => ({
+      name,
+      qty,
+      price: PRICES[name]
+    }));
 
   if (items.length === 0) {
     alert("Please select at least one drink.");
     return;
   }
 
-  try {
-    const res = await fetch("/.netlify/functions/order", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        customer: { name, phone, address },
-        items
-      })
-    });
+  const totalAmount = calculateTotal();
 
-    const data = await res.json();
+  await fetch("/.netlify/functions/order", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      customer: { name, phone, address },
+      items,
+      totalAmount
+    })
+  });
 
-    alert("Order received! We’ll get started shortly.");
-
-  } catch {
-    alert("Something went wrong. Please try again.");
-  }
+  alert("Order received! Please scan the QR to pay.");
 }
 
 function calculateTotal() {
@@ -72,5 +72,6 @@ function calculateTotal() {
   document.getElementById("totalAmount").innerText = `₹${total}`;
   return total;
 }
+
 
 
