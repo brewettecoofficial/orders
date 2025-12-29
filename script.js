@@ -1,6 +1,12 @@
 const MAX_QTY = 5;
 
 // Store order state
+const PRICES = {
+  "Iced White Chocolate Mocha": 220,
+  "Iced Nuts About You": 210,
+  "Milk Coffee": 160
+};
+
 let order = {
   "Iced White Chocolate Mocha": 0,
   "Iced Nuts About You": 0,
@@ -52,3 +58,4 @@ async function submitOrder() {
     alert("Something went wrong. Please try again.");
   }
 }
+
