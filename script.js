@@ -15,10 +15,13 @@ let order = {
 
 function updateQty(item, change) {
   order[item] += change;
+
   if (order[item] < 0) order[item] = 0;
-  if (order[item] > MAX_QTY) order[item] = MAX_QTY;
+  if (order[item] > 5) order[item] = 5;
 
   document.getElementById(`qty-${item}`).innerText = order[item];
+
+  calculateTotal(); // 👈 IMPORTANT
 }
 
 async function submitOrder() {
@@ -69,4 +72,5 @@ function calculateTotal() {
   document.getElementById("totalAmount").innerText = `₹${total}`;
   return total;
 }
+
 
