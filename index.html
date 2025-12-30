@@ -51,3 +51,118 @@
             <div class="item-name">Hot Pour Over</div>
             <div class="item-sub">₹270</div>
           </div>
+
+          <div class="stepper" aria-label="Hot Pour Over quantity">
+            <button class="stepper-btn" data-item="pourover_hot" data-change="-1" type="button">−</button>
+            <div class="stepper-qty" id="qty-pourover_hot">0</div>
+            <button class="stepper-btn" data-item="pourover_hot" data-change="1" type="button">+</button>
+          </div>
+        </div>
+
+        <div class="menu-row">
+          <div class="menu-left">
+            <div class="item-name">Lavender Cranberry Tea</div>
+            <div class="item-sub">₹260</div>
+          </div>
+
+          <div class="stepper" aria-label="Lavender Cranberry Tea quantity">
+            <button class="stepper-btn" data-item="lavender_tea" data-change="-1" type="button">−</button>
+            <div class="stepper-qty" id="qty-lavender_tea">0</div>
+            <button class="stepper-btn" data-item="lavender_tea" data-change="1" type="button">+</button>
+          </div>
+        </div>
+
+        <hr class="divider" />
+
+        <div class="menu-row">
+          <div class="menu-left">
+            <div class="item-name">Caramella (Iced)</div>
+            <div class="item-sub">₹340</div>
+          </div>
+
+          <div class="stepper" aria-label="Caramella quantity">
+            <button class="stepper-btn" data-item="caramella_iced" data-change="-1" type="button">−</button>
+            <div class="stepper-qty" id="qty-caramella_iced">0</div>
+            <button class="stepper-btn" data-item="caramella_iced" data-change="1" type="button">+</button>
+          </div>
+        </div>
+
+        <div class="menu-row">
+          <div class="menu-left">
+            <div class="item-name">Orange Cold Brew</div>
+            <div class="item-sub">₹360</div>
+          </div>
+
+          <div class="stepper" aria-label="Orange Cold Brew quantity">
+            <button class="stepper-btn" data-item="orange_coldbrew" data-change="-1" type="button">−</button>
+            <div class="stepper-qty" id="qty-orange_coldbrew">0</div>
+            <button class="stepper-btn" data-item="orange_coldbrew" data-change="1" type="button">+</button>
+          </div>
+        </div>
+
+        <div class="menu-row">
+          <div class="menu-left">
+            <div class="item-name">Oatmilk Matcha (Iced)</div>
+            <div class="item-sub">₹390</div>
+          </div>
+
+          <div class="stepper" aria-label="Oatmilk Matcha quantity">
+            <button class="stepper-btn" data-item="oatmilk_matcha" data-change="-1" type="button">−</button>
+            <div class="stepper-qty" id="qty-oatmilk_matcha">0</div>
+            <button class="stepper-btn" data-item="oatmilk_matcha" data-change="1" type="button">+</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="total-row">
+        <span class="total-label">Subtotal</span>
+        <span class="total-amount" id="subtotalAmount">₹0</span>
+      </div>
+
+      <div class="total-row">
+        <span class="total-label">Delivery</span>
+        <span class="total-amount" id="deliveryAmount">₹179</span>
+      </div>
+
+      <div class="total-row total-row-strong">
+        <span class="total-label">Total</span>
+        <span class="total-amount" id="totalAmount">₹179</span>
+      </div>
+
+    </section>
+
+    <!-- PAYMENT -->
+    <section class="card">
+      <h2>Payment</h2>
+
+      <div class="qr-wrap">
+        <img class="qr" src="gpay-qr.png" alt="Scan to pay via UPI" />
+        <div class="qr-caption">Scan to pay with any UPI app</div>
+      </div>
+
+      <div class="pay-links">
+        <a class="link" id="upiLink" href="#" target="_blank" rel="noopener">
+          Pay via UPI
+        </a>
+
+        <button class="link-btn" id="copyUpiBtn" type="button">Copy UPI ID</button>
+        <div class="muted" id="copyStatus"></div>
+      </div>
+
+      <p class="note">
+        Please ensure your payment is completed before placing your order.
+      </p>
+    </section>
+
+    <!-- CTA -->
+    <button class="cta" id="placeOrderBtn" type="button">
+      Place Order
+    </button>
+
+    <footer class="footer">:)</footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
