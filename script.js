@@ -49,18 +49,13 @@ async function submitOrder() {
 
   const totalAmount = calculateTotal();
 
-  await fetch("/.netlify/functions/order", {
+  fetch("https://script.google.com/macros/s/AKfycbx7wGkwEjAqOtNb-bhXa2PahXbjWLG1oJMUL6uFAZ5oNeB1vt0Sx4ZmiXYNKut0-ZjIdg/exec", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      customer: { name, phone, address },
-      items,
-      totalAmount
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({customer, items, totalAmount })
     })
-  });
-
-  alert("Order received! Please scan the QR to pay.");
-}
+    .then(() => {console.log("Saved to sheet");})
+    .catch(err => {console.error("Sheet error", err);});
 
 function calculateTotal() {
   let total = 0;
@@ -72,6 +67,7 @@ function calculateTotal() {
   document.getElementById("totalAmount").innerText = `₹${total}`;
   return total;
 }
+
 
 
 
