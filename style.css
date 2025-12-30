@@ -43,7 +43,11 @@ body{
 h2{
   font-size: 30px;
   margin: 0 0 14px;
-  font-weight: 600;
+  font-weight: 800;
+}
+
+h3{
+  margin: 0 0 14px;
 }
 
 .fields{
@@ -228,6 +232,7 @@ textarea{ resize: vertical; min-height: 92px; }
   margin-top: 18px;
   color: var(--muted);
 }
+
 
 
 
