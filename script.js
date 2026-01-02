@@ -15,19 +15,19 @@ const PAYEE_NAME = "Apoorva Korabondy";
 const SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwjx4taFxEhhBdMwfYdrnCXmi_aL-lONoM_hUtqEnKI8tG9Bbc71eG8uXTnZMmbw0g/exec";
 
 // Delivery fee (flat)
-const DELIVERY_FEE = 179;
+const DELIVERY_FEE = 0;
 
 // Max per item
 const MAX_QTY = 5;
 
 // Menu
 const MENU = {
-  coconut_hot:     { name: "Coconut Kiss (Hot)",       price: 290 },
-  pourover_hot:    { name: "Hot Pour Over",            price: 270 },
-  lavender_tea:    { name: "Lavender Cranberry Tea",   price: 260 },
-  caramella_iced:  { name: "Caramella (Iced)",         price: 340 },
-  orange_coldbrew: { name: "Orange Cold Brew",         price: 360 },
-  oatmilk_matcha:  { name: "Oatmilk Matcha (Iced)",    price: 390 }
+  coconut_hot:     { name: "Coconut Cloud (Hot)",       price: 350 },
+  pourover_hot:    { name: "Hot Pour Over",            price: 325 },
+  lavender_tea:    { name: "Lavender Cranberry Tea",   price: 310 },
+  caramella_iced:  { name: "Caramella (Iced)",         price: 400 },
+  orange_coldbrew: { name: "Orange Cold Brew",         price: 380 },
+  oatmilk_matcha:  { name: "Oatmilk Matcha (Iced)",    price: 415 }
 };
 
 // State
@@ -169,4 +169,5 @@ async function submitOrder() {
 
 // Initial render
 render();
+
 
