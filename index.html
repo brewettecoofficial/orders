@@ -1,169 +1,146 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Brewette</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
+/**
+ * Brewette ordering flow (static GitHub Pages)
+ * - Stepper buttons update quantities
+ * - ONE total updates live (totalAmount)
+ * - Place Order posts to Apps Script
+ */
 
-<body>
-  <main class="container">
+// ===== CONFIG =====
+const UPI_ID = "apoorvak999@oksbi";
 
-    <!-- HERO -->
-    <header class="hero">
-      <h1 class="brand">Brewette Co.</h1>
-      <p class="tagline">Your daily sip. Crafted in small batches. </p>
-    </header>
+const SHEET_WEBHOOK_URL =
+  "https://script.google.com/macros/s/AKfycbwjx4taFxEhhBdMwfYdrnCXmi_aL-lONoM_hUtqEnKI8tG9Bbc71eG8uXTnZMmbw0g/exec";
 
-    <!-- CUSTOMER DETAILS -->
-    <section class="card">
-      <h2>Ordering for</h2>
+const MAX_QTY = 5;
 
-      <div class="fields">
-        <input id="customerName" type="text" placeholder="Your name" autocomplete="name" />
-        <input id="customerPhone" type="tel" placeholder="Phone number" autocomplete="tel" />
-        <textarea id="customerAddress" rows="3" placeholder="Delivery address"></textarea>
-      </div>
-    </section>
+// Menu
+const MENU = {
+  coconut_hot:     { name: "Coconut Cloud (Hot)",     price: 350 },
+  pourover_hot:    { name: "Hot Pour Over",           price: 325 },
+  lavender_tea:    { name: "Lavender Cranberry Tea",  price: 310 },
+  caramella_iced:  { name: "Caramella (Iced)",        price: 400 },
+  oatmilk_matcha:  { name: "Oatmilk Matcha (Iced)",   price: 415 },
+  orange_coldbrew: { name: "Orange Cold Brew",        price: 380 }
+};
 
-    <!-- MENU -->
-    <section class="card">
-      <h2>Menu</h2>
+// State
+const order = Object.fromEntries(Object.keys(MENU).map(k => [k, 0]));
 
-      <div class="menu">
-        <h3>Hot</h3>
-        <div class="menu-row">
-          <div class="menu-left">
-            <div class="item-name">Coconut Cloud</div>
-            <div class="item-sub">₹350</div>
-          </div>
+// ===== Helpers =====
+function formatINR(n) {
+  return `₹${n}`;
+}
 
-          <div class="stepper" aria-label="Coconut Kiss quantity">
-            <button class="stepper-btn" data-item="coconut_hot" data-change="-1" type="button">−</button>
-            <div class="stepper-qty" id="qty-coconut_hot">0</div>
-            <button class="stepper-btn" data-item="coconut_hot" data-change="1" type="button">+</button>
-          </div>
-        </div>
+function clampQty(q) {
+  return Math.max(0, Math.min(MAX_QTY, q));
+}
 
-        <div class="menu-row">
-          <div class="menu-left">
-            <div class="item-name">Pour Over</div>
-            <div class="item-sub">₹325</div>
-          </div>
+function computeTotal() {
+  return Object.keys(order).reduce(
+    (sum, key) => sum + order[key] * MENU[key].price,
+    0
+  );
+}
 
-          <div class="stepper" aria-label="Hot Pour Over quantity">
-            <button class="stepper-btn" data-item="pourover_hot" data-change="-1" type="button">−</button>
-            <div class="stepper-qty" id="qty-pourover_hot">0</div>
-            <button class="stepper-btn" data-item="pourover_hot" data-change="1" type="button">+</button>
-          </div>
-        </div>
+function render() {
+  // Update quantities
+  for (const key in order) {
+    const qtyEl = document.getElementById(`qty-${key}`);
+    if (qtyEl) qtyEl.textContent = order[key];
+  }
 
-        <div class="menu-row">
-          <div class="menu-left">
-            <div class="item-name">Lavender Cranberry Tea</div>
-            <div class="item-sub">₹310</div>
-          </div>
+  // Update ONLY final total
+  const totalEl = document.getElementById("totalAmount");
+  if (totalEl) totalEl.textContent = formatINR(computeTotal());
+}
 
-          <div class="stepper" aria-label="Lavender Cranberry Tea quantity">
-            <button class="stepper-btn" data-item="lavender_tea" data-change="-1" type="button">−</button>
-            <div class="stepper-qty" id="qty-lavender_tea">0</div>
-            <button class="stepper-btn" data-item="lavender_tea" data-change="1" type="button">+</button>
-          </div>
-        </div>
+// ===== Stepper buttons =====
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest(".stepper-btn");
+  if (!btn) return;
 
-        <hr class="divider" />
-        <h3>Iced</h3>
-        <div class="menu-row">
-          <div class="menu-left">
-            <div class="item-name">Caramella</div>
-            <div class="item-sub">₹400</div>
-          </div>
+  const key = btn.dataset.item;
+  const change = Number(btn.dataset.change);
 
-          <div class="stepper" aria-label="Caramella quantity">
-            <button class="stepper-btn" data-item="caramella_iced" data-change="-1" type="button">−</button>
-            <div class="stepper-qty" id="qty-caramella_iced">0</div>
-            <button class="stepper-btn" data-item="caramella_iced" data-change="1" type="button">+</button>
-          </div>
-        </div>
-        
-        <div class="menu-row">
-          <div class="menu-left">
-            <div class="item-name">Oatmilk Matcha</div>
-            <div class="item-sub">₹415</div>
-          </div>
+  if (!MENU[key]) return;
 
-          <div class="stepper" aria-label="Oatmilk Matcha quantity">
-            <button class="stepper-btn" data-item="oatmilk_matcha" data-change="-1" type="button">−</button>
-            <div class="stepper-qty" id="qty-oatmilk_matcha">0</div>
-            <button class="stepper-btn" data-item="oatmilk_matcha" data-change="1" type="button">+</button>
-          </div>
-        </div>
+  order[key] = clampQty(order[key] + change);
+  render();
+});
 
-        <div class="menu-row">
-          <div class="menu-left">
-            <div class="item-name">Orange Cold Brew</div>
-            <div class="item-sub">₹380</div>
-          </div>
+// ===== Copy UPI =====
+document.getElementById("copyUpiBtn")?.addEventListener("click", async () => {
+  const status = document.getElementById("copyStatus");
+  try {
+    await navigator.clipboard.writeText(UPI_ID);
+    status.textContent = "UPI ID copied.";
+    setTimeout(() => (status.textContent = ""), 1500);
+  } catch {
+    status.textContent = `Copy this UPI ID: ${UPI_ID}`;
+  }
+});
 
-          <div class="stepper" aria-label="Orange Cold Brew quantity">
-            <button class="stepper-btn" data-item="orange_coldbrew" data-change="-1" type="button">−</button>
-            <div class="stepper-qty" id="qty-orange_coldbrew">0</div>
-            <button class="stepper-btn" data-item="orange_coldbrew" data-change="1" type="button">+</button>
-          </div>
-        </div>
+// ===== Submit order =====
+document.getElementById("placeOrderBtn")?.addEventListener("click", submitOrder);
 
-      </div>
+async function submitOrder() {
+  const name = document.getElementById("customerName").value.trim();
+  const phone = document.getElementById("customerPhone").value.trim();
+  const address = document.getElementById("customerAddress").value.trim();
 
-      <div class="total-row">
-        <span class="total-label">Total</span>
-        <span class="total-amount" id="subtotalAmount">₹0</span>
-      </div>
+  if (!name || !phone || !address) {
+    alert("Please fill in all details.");
+    return;
+  }
 
-      <div class="total-row">
-        <span class="total-label">
-          <p class="note"> Prices are inclusive of packaging and delivery. </p>
-          </span>
-        </div>
+  const items = Object.keys(order)
+    .filter(k => order[k] > 0)
+    .map(k => ({
+      name: MENU[k].name,
+      qty: order[k],
+      price: MENU[k].price,
+      lineTotal: order[k] * MENU[k].price
+    }));
 
-      <div class="total-row total-row-strong">
-        <span class="total-label">Total</span>
-        <span class="total-amount" id="totalAmount">₹0</span>
-      </div>
+  if (items.length === 0) {
+    alert("Please select at least one drink.");
+    return;
+  }
 
-    </section>
+  const payload = {
+    customer: { name, phone, address },
+    items,
+    totalAmount: computeTotal(),
+    createdAt: new Date().toISOString()
+  };
 
-    <!-- PAYMENT -->
-    <section class="card">
-      <h2>Payment</h2>
+  const btn = document.getElementById("placeOrderBtn");
+  btn.disabled = true;
+  btn.textContent = "Placing order...";
 
-      <div class="qr-wrap">
-        <img class="qr" src="gpay-qr.png" alt="Scan to pay via UPI" />
-      </div>
+  try {
+    const res = await fetch(SHEET_WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(payload)
+    });
 
-      <div class="pay-links">
-        <button class="link-btn" id="copyUpiBtn" type="button">Copy UPI ID</button>
-        <div class="muted" id="copyStatus"></div>
-      </div>
+    if (!res.ok) throw new Error("Order failed");
 
-      <p class="note">
-        Please ensure your payment is completed before placing your order.
-      </p>
-    </section>
+    alert("Order saved! ✅");
 
-    <!-- CTA -->
-    <button class="cta" id="placeOrderBtn" type="button">
-      Place Order
-    </button>
+    // Reset quantities
+    for (const k in order) order[k] = 0;
+    render();
 
-    <footer class="footer"></footer>
-  </main>
+  } catch (err) {
+    console.error(err);
+    alert("Could not save order. Please try again.");
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "Place Order";
+  }
+}
 
-  <script src="script.js"></script>
-</body>
-</html>
-
-
-
-
-
+// Initial render
+render();
