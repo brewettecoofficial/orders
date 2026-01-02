@@ -61,6 +61,22 @@ function render() {
     if (el) el.textContent = String(order[key]);
   }
 
+  const subtotal = computeSubtotal();
+
+  const subtotalEl = document.getElementById("subtotalAmount");
+  if (subtotalEl) subtotalEl.textContent = formatINR(subtotal);
+
+  const deliveryEl = document.getElementById("deliveryAmount");
+  if (deliveryEl) deliveryEl.textContent = formatINR(DELIVERY_FEE);
+
+  const totalEl = document.getElementById("totalAmount");
+  if (totalEl) totalEl.textContent = formatINR(subtotal + DELIVERY_FEE);
+
+  const upiLink = document.getElementById("upiLink");
+  if (upiLink) upiLink.href = buildUpiLink();
+}
+}
+
   // Totals
   const subtotal = computeSubtotal();
   document.getElementById("subtotalAmount").textContent = formatINR(subtotal);
@@ -169,5 +185,6 @@ async function submitOrder() {
 
 // Initial render
 render();
+
 
 
