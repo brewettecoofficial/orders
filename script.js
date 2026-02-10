@@ -1,26 +1,30 @@
 /**
  * Brewette ordering flow (static GitHub Pages)
- * - Stepper buttons update quantities
+ * - Stepper buttons update quantities for Regular & Signature sizes
  * - One total amount updates live
  * - Place Order posts to Apps Script
  */
 
 // ===== CONFIG =====
 const UPI_ID = "apoorvak999@oksbi";
-
 const SHEET_WEBHOOK_URL =
   "https://script.google.com/macros/s/AKfycbwjx4taFxEhhBdMwfYdrnCXmi_aL-lONoM_hUtqEnKI8tG9Bbc71eG8uXTnZMmbw0g/exec";
-
 const MAX_QTY = 5;
 
-// Menu
+// Menu with both sizes
 const MENU = {
-  coconut_hot:     { name: "Coconut Cloud (Hot)",     price: 350 },
-  pourover_hot:    { name: "Hot Pour Over",           price: 325 },
-  lavender_tea:    { name: "Lavender Cranberry Tea",  price: 310 },
-  caramella_iced:  { name: "Caramella (Iced)",        price: 400 },
-  orange_coldbrew: { name: "Orange Cold Brew",        price: 380 },
-  oatmilk_matcha:  { name: "Oatmilk Matcha (Iced)",   price: 415 }
+  caramella_regular:          { name: "Caramella",           size: "Regular (250ml)", price: 390 },
+  caramella_signature:        { name: "Caramella",           size: "Signature (470ml)", price: 480 },
+  orange_coldbrew_regular:    { name: "Orange Cold Brew",    size: "Regular (250ml)", price: 390 },
+  orange_coldbrew_signature:  { name: "Orange Cold Brew",    size: "Signature (470ml)", price: 470 },
+  oatmilk_matcha_regular:     { name: "Oatmilk Matcha Latte", size: "Regular (250ml)", price: 410 },
+  oatmilk_matcha_signature:   { name: "Oatmilk Matcha Latte", size: "Signature (470ml)", price: 500 },
+  earl_grey_regular:          { name: "Earl Grey Milk Tea",  size: "Regular (250ml)", price: 390 },
+  earl_grey_signature:        { name: "Earl Grey Milk Tea",  size: "Signature (470ml)", price: 490 },
+  iced_pourover_regular:      { name: "Iced Pour Over",      size: "Regular (250ml)", price: 340 },
+  iced_pourover_signature:    { name: "Iced Pour Over",      size: "Signature (470ml)", price: 440 },
+  espresso_tonic_regular:     { name: "Espresso Tonic",      size: "Regular (250ml)", price: 400 },
+  espresso_tonic_signature:   { name: "Espresso Tonic",      size: "Signature (470ml)", price: 460 }
 };
 
 // State
@@ -48,7 +52,6 @@ function render() {
     const qtyEl = document.getElementById(`qty-${key}`);
     if (qtyEl) qtyEl.textContent = order[key];
   }
-
   // Update single total
   const totalEl = document.getElementById("totalAmount");
   if (totalEl) totalEl.textContent = formatINR(computeTotal());
@@ -58,12 +61,9 @@ function render() {
 document.addEventListener("click", (e) => {
   const btn = e.target.closest(".stepper-btn");
   if (!btn) return;
-
   const key = btn.dataset.item;
   const change = Number(btn.dataset.change);
-
   if (!MENU[key]) return;
-
   order[key] = clampQty(order[key] + change);
   render();
 });
@@ -97,6 +97,7 @@ async function submitOrder() {
     .filter(k => order[k] > 0)
     .map(k => ({
       name: MENU[k].name,
+      size: MENU[k].size,
       qty: order[k],
       price: MENU[k].price,
       lineTotal: order[k] * MENU[k].price
@@ -124,15 +125,14 @@ async function submitOrder() {
       headers: { "Content-Type": "text/plain;charset=utf-8" },
       body: JSON.stringify(payload)
     });
-
     if (!res.ok) throw new Error("Order failed");
-
     alert("Order saved! ✅");
-
     // Reset
     for (const k in order) order[k] = 0;
+    document.getElementById("customerName").value = "";
+    document.getElementById("customerPhone").value = "";
+    document.getElementById("customerAddress").value = "";
     render();
-
   } catch (err) {
     console.error(err);
     alert("Could not save order. Please try again.");
