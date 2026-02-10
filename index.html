@@ -31,80 +31,165 @@
       <h2>Menu</h2>
 
       <div class="menu">
-        <h3>Hot</h3>
-
-        <div class="menu-row">
-          <div class="menu-left">
-            <div class="item-name">Coconut Cloud</div>
-            <div class="item-sub">₹350</div>
-          </div>
-          <div class="stepper">
-            <button class="stepper-btn" data-item="coconut_hot" data-change="-1" type="button">−</button>
-            <div class="stepper-qty" id="qty-coconut_hot">0</div>
-            <button class="stepper-btn" data-item="coconut_hot" data-change="1" type="button">+</button>
-          </div>
-        </div>
-
-        <div class="menu-row">
-          <div class="menu-left">
-            <div class="item-name">Pour Over</div>
-            <div class="item-sub">₹325</div>
-          </div>
-          <div class="stepper">
-            <button class="stepper-btn" data-item="pourover_hot" data-change="-1" type="button">−</button>
-            <div class="stepper-qty" id="qty-pourover_hot">0</div>
-            <button class="stepper-btn" data-item="pourover_hot" data-change="1" type="button">+</button>
-          </div>
-        </div>
-
-        <div class="menu-row">
-          <div class="menu-left">
-            <div class="item-name">Lavender Cranberry Tea</div>
-            <div class="item-sub">₹310</div>
-          </div>
-          <div class="stepper">
-            <button class="stepper-btn" data-item="lavender_tea" data-change="-1" type="button">−</button>
-            <div class="stepper-qty" id="qty-lavender_tea">0</div>
-            <button class="stepper-btn" data-item="lavender_tea" data-change="1" type="button">+</button>
-          </div>
-        </div>
-
-        <hr class="divider" />
-        <h3>Iced</h3>
-
+        <!-- Caramella -->
         <div class="menu-row">
           <div class="menu-left">
             <div class="item-name">Caramella</div>
-            <div class="item-sub">₹400</div>
           </div>
-          <div class="stepper">
-            <button class="stepper-btn" data-item="caramella_iced" data-change="-1" type="button">−</button>
-            <div class="stepper-qty" id="qty-caramella_iced">0</div>
-            <button class="stepper-btn" data-item="caramella_iced" data-change="1" type="button">+</button>
+          <div class="size-steppers">
+            <div class="size-column">
+              <div class="size-label">Regular (250ml)</div>
+              <div class="size-price">₹390</div>
+              <div class="stepper">
+                <button class="stepper-btn" data-item="caramella_regular" data-change="-1" type="button">−</button>
+                <div class="stepper-qty" id="qty-caramella_regular">0</div>
+                <button class="stepper-btn" data-item="caramella_regular" data-change="1" type="button">+</button>
+              </div>
+            </div>
+            <div class="size-column">
+              <div class="size-label">Signature (470ml)</div>
+              <div class="size-price">₹480</div>
+              <div class="stepper">
+                <button class="stepper-btn" data-item="caramella_signature" data-change="-1" type="button">−</button>
+                <div class="stepper-qty" id="qty-caramella_signature">0</div>
+                <button class="stepper-btn" data-item="caramella_signature" data-change="1" type="button">+</button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="menu-row">
-          <div class="menu-left">
-            <div class="item-name">Oatmilk Matcha</div>
-            <div class="item-sub">₹415</div>
-          </div>
-          <div class="stepper">
-            <button class="stepper-btn" data-item="oatmilk_matcha" data-change="-1" type="button">−</button>
-            <div class="stepper-qty" id="qty-oatmilk_matcha">0</div>
-            <button class="stepper-btn" data-item="oatmilk_matcha" data-change="1" type="button">+</button>
-          </div>
-        </div>
-
+        <!-- Orange Cold Brew -->
         <div class="menu-row">
           <div class="menu-left">
             <div class="item-name">Orange Cold Brew</div>
-            <div class="item-sub">₹380</div>
           </div>
-          <div class="stepper">
-            <button class="stepper-btn" data-item="orange_coldbrew" data-change="-1" type="button">−</button>
-            <div class="stepper-qty" id="qty-orange_coldbrew">0</div>
-            <button class="stepper-btn" data-item="orange_coldbrew" data-change="1" type="button">+</button>
+          <div class="size-steppers">
+            <div class="size-column">
+              <div class="size-label">Regular (250ml)</div>
+              <div class="size-price">₹390</div>
+              <div class="stepper">
+                <button class="stepper-btn" data-item="orange_coldbrew_regular" data-change="-1" type="button">−</button>
+                <div class="stepper-qty" id="qty-orange_coldbrew_regular">0</div>
+                <button class="stepper-btn" data-item="orange_coldbrew_regular" data-change="1" type="button">+</button>
+              </div>
+            </div>
+            <div class="size-column">
+              <div class="size-label">Signature (470ml)</div>
+              <div class="size-price">₹470</div>
+              <div class="stepper">
+                <button class="stepper-btn" data-item="orange_coldbrew_signature" data-change="-1" type="button">−</button>
+                <div class="stepper-qty" id="qty-orange_coldbrew_signature">0</div>
+                <button class="stepper-btn" data-item="orange_coldbrew_signature" data-change="1" type="button">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Oatmilk Matcha -->
+        <div class="menu-row">
+          <div class="menu-left">
+            <div class="item-name">Oatmilk Matcha Latte</div>
+          </div>
+          <div class="size-steppers">
+            <div class="size-column">
+              <div class="size-label">Regular (250ml)</div>
+              <div class="size-price">₹410</div>
+              <div class="stepper">
+                <button class="stepper-btn" data-item="oatmilk_matcha_regular" data-change="-1" type="button">−</button>
+                <div class="stepper-qty" id="qty-oatmilk_matcha_regular">0</div>
+                <button class="stepper-btn" data-item="oatmilk_matcha_regular" data-change="1" type="button">+</button>
+              </div>
+            </div>
+            <div class="size-column">
+              <div class="size-label">Signature (470ml)</div>
+              <div class="size-price">₹500</div>
+              <div class="stepper">
+                <button class="stepper-btn" data-item="oatmilk_matcha_signature" data-change="-1" type="button">−</button>
+                <div class="stepper-qty" id="qty-oatmilk_matcha_signature">0</div>
+                <button class="stepper-btn" data-item="oatmilk_matcha_signature" data-change="1" type="button">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Earl Grey Milk Tea -->
+        <div class="menu-row">
+          <div class="menu-left">
+            <div class="item-name">Earl Grey Milk Tea</div>
+          </div>
+          <div class="size-steppers">
+            <div class="size-column">
+              <div class="size-label">Regular (250ml)</div>
+              <div class="size-price">₹390</div>
+              <div class="stepper">
+                <button class="stepper-btn" data-item="earl_grey_regular" data-change="-1" type="button">−</button>
+                <div class="stepper-qty" id="qty-earl_grey_regular">0</div>
+                <button class="stepper-btn" data-item="earl_grey_regular" data-change="1" type="button">+</button>
+              </div>
+            </div>
+            <div class="size-column">
+              <div class="size-label">Signature (470ml)</div>
+              <div class="size-price">₹490</div>
+              <div class="stepper">
+                <button class="stepper-btn" data-item="earl_grey_signature" data-change="-1" type="button">−</button>
+                <div class="stepper-qty" id="qty-earl_grey_signature">0</div>
+                <button class="stepper-btn" data-item="earl_grey_signature" data-change="1" type="button">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Iced Pour Over -->
+        <div class="menu-row">
+          <div class="menu-left">
+            <div class="item-name">Iced Pour Over</div>
+          </div>
+          <div class="size-steppers">
+            <div class="size-column">
+              <div class="size-label">Regular (250ml)</div>
+              <div class="size-price">₹340</div>
+              <div class="stepper">
+                <button class="stepper-btn" data-item="iced_pourover_regular" data-change="-1" type="button">−</button>
+                <div class="stepper-qty" id="qty-iced_pourover_regular">0</div>
+                <button class="stepper-btn" data-item="iced_pourover_regular" data-change="1" type="button">+</button>
+              </div>
+            </div>
+            <div class="size-column">
+              <div class="size-label">Signature (470ml)</div>
+              <div class="size-price">₹440</div>
+              <div class="stepper">
+                <button class="stepper-btn" data-item="iced_pourover_signature" data-change="-1" type="button">−</button>
+                <div class="stepper-qty" id="qty-iced_pourover_signature">0</div>
+                <button class="stepper-btn" data-item="iced_pourover_signature" data-change="1" type="button">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Espresso Tonic -->
+        <div class="menu-row">
+          <div class="menu-left">
+            <div class="item-name">Espresso Tonic</div>
+          </div>
+          <div class="size-steppers">
+            <div class="size-column">
+              <div class="size-label">Regular (250ml)</div>
+              <div class="size-price">₹400</div>
+              <div class="stepper">
+                <button class="stepper-btn" data-item="espresso_tonic_regular" data-change="-1" type="button">−</button>
+                <div class="stepper-qty" id="qty-espresso_tonic_regular">0</div>
+                <button class="stepper-btn" data-item="espresso_tonic_regular" data-change="1" type="button">+</button>
+              </div>
+            </div>
+            <div class="size-column">
+              <div class="size-label">Signature (470ml)</div>
+              <div class="size-price">₹460</div>
+              <div class="stepper">
+                <button class="stepper-btn" data-item="espresso_tonic_signature" data-change="-1" type="button">−</button>
+                <div class="stepper-qty" id="qty-espresso_tonic_signature">0</div>
+                <button class="stepper-btn" data-item="espresso_tonic_signature" data-change="1" type="button">+</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
