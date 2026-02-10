@@ -54,63 +54,82 @@ input, textarea{
   font-family: inherit;
 }
 textarea{ resize: vertical; min-height: 92px; }
-.menu{
+
+/* Menu Grid */
+.menu-grid{
   display: grid;
-  gap: 20px;
+  gap: 0;
   margin-top: 12px;
 }
-.menu-row{
-  display:flex;
-  flex-direction: column;
-  gap: 12px;
+
+/* Header Row */
+.menu-header-row{
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 8px;
+  padding: 12px 0;
+  border-bottom: 2px solid var(--black);
+  margin-bottom: 8px;
 }
-.menu-left{
-  display:flex;
-  flex-direction:column;
+.menu-header-item{
+  /* empty cell above item names */
+}
+.menu-header-size{
+  text-align: center;
+}
+.size-name{
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.size-ml{
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* Item Rows */
+.menu-item-row{
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 8px;
+  padding: 14px 0;
+  border-bottom: 1px solid #e7e7e7;
+  align-items: center;
+}
+.menu-item-name{
+  display: flex;
+  flex-direction: column;
   gap: 4px;
 }
-.item-name{
-  font-size: 18px;
-  font-weight: 500;
-}
-.item-sub{
-  font-size: 14px;
-  color: var(--muted);
-}
-.size-steppers{
-  display: flex;
-  gap: 12px;
-}
-.size-column{
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.size-label{
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--muted);
-}
-.size-price{
+.item-title{
   font-size: 16px;
   font-weight: 600;
-  margin-bottom: 4px;
 }
+.item-prices{
+  font-size: 13px;
+  color: var(--muted);
+}
+.menu-stepper-cell{
+  display: flex;
+  justify-content: center;
+}
+
+/* Stepper */
 .stepper{
   display:flex;
-  border-radius: 10px;
+  border-radius: 8px;
   overflow:hidden;
-  border: 1px solid #000;
+  border: 1px solid var(--black);
   width: 100%;
-  height: 44px;
+  max-width: 120px;
+  height: 40px;
 }
 .stepper-btn{
   flex: 1;
   border: none;
   background: var(--black);
   color: #fff;
-  font-size: 22px;
+  font-size: 20px;
   cursor: pointer;
 }
 .stepper-qty{
@@ -118,20 +137,16 @@ textarea{ resize: vertical; min-height: 92px; }
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   background:#fff;
 }
-.divider{
-  border: none;
-  border-top: 1px solid #e7e7e7;
-  margin: 10px 0;
-}
+
 .total-row{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  border-top: 1px solid #e7e7e7;
+  border-top: 2px solid var(--black);
   margin-top: 14px;
   padding-top: 14px;
 }
@@ -217,15 +232,35 @@ textarea{ resize: vertical; min-height: 92px; }
 }
 
 /* Mobile responsive */
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .brand{
     font-size: 42px;
   }
-  .size-steppers{
-    flex-direction: column;
-    gap: 10px;
+  .menu-header-row,
+  .menu-item-row{
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 6px;
   }
-  .size-column{
-    width: 100%;
+  .item-title{
+    font-size: 14px;
+  }
+  .item-prices{
+    font-size: 11px;
+  }
+  .stepper{
+    max-width: 100px;
+    height: 36px;
+  }
+  .stepper-btn{
+    font-size: 18px;
+  }
+  .stepper-qty{
+    font-size: 14px;
+  }
+  .size-name{
+    font-size: 12px;
+  }
+  .size-ml{
+    font-size: 10px;
   }
 }
