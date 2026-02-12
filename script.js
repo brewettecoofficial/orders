@@ -11,20 +11,20 @@ const SHEET_WEBHOOK_URL =
   "https://script.google.com/macros/s/AKfycbwjx4taFxEhhBdMwfYdrnCXmi_aL-lONoM_hUtqEnKI8tG9Bbc71eG8uXTnZMmbw0g/exec";
 const MAX_QTY = 5;
 
-// Menu with both sizes
+// Menu with launch pricing
 const MENU = {
-  caramella_regular:          { name: "Caramella",           size: "Regular (250ml)", price: 390 },
-  caramella_signature:        { name: "Caramella",           size: "Signature (470ml)", price: 480 },
-  orange_coldbrew_regular:    { name: "Orange Cold Brew",    size: "Regular (250ml)", price: 390 },
-  orange_coldbrew_signature:  { name: "Orange Cold Brew",    size: "Signature (470ml)", price: 470 },
-  oatmilk_matcha_regular:     { name: "Oatmilk Matcha Latte", size: "Regular (250ml)", price: 410 },
-  oatmilk_matcha_signature:   { name: "Oatmilk Matcha Latte", size: "Signature (470ml)", price: 500 },
-  earl_grey_regular:          { name: "Earl Grey Milk Tea",  size: "Regular (250ml)", price: 390 },
-  earl_grey_signature:        { name: "Earl Grey Milk Tea",  size: "Signature (470ml)", price: 490 },
-  iced_pourover_regular:      { name: "Iced Pour Over",      size: "Regular (250ml)", price: 340 },
-  iced_pourover_signature:    { name: "Iced Pour Over",      size: "Signature (470ml)", price: 440 },
-  espresso_tonic_regular:     { name: "Espresso Tonic",      size: "Regular (250ml)", price: 400 },
-  espresso_tonic_signature:   { name: "Espresso Tonic",      size: "Signature (470ml)", price: 460 }
+  caramella_regular:          { name: "Caramella",           size: "Regular (250ml)", price: 380 },
+  caramella_signature:        { name: "Caramella",           size: "Signature (470ml)", price: 430 },
+  orange_coldbrew_regular:    { name: "Orange Cold Brew",    size: "Regular (250ml)", price: 330 },
+  orange_coldbrew_signature:  { name: "Orange Cold Brew",    size: "Signature (470ml)", price: 430 },
+  oatmilk_matcha_regular:     { name: "Oatmilk Matcha Latte", size: "Regular (250ml)", price: 390 },
+  oatmilk_matcha_signature:   { name: "Oatmilk Matcha Latte", size: "Signature (470ml)", price: 490 },
+  earl_grey_regular:          { name: "Earl Grey Milk Tea",  size: "Regular (250ml)", price: 360 },
+  earl_grey_signature:        { name: "Earl Grey Milk Tea",  size: "Signature (470ml)", price: 430 },
+  iced_pourover_regular:      { name: "Iced Pour Over",      size: "Regular (250ml)", price: 320 },
+  iced_pourover_signature:    { name: "Iced Pour Over",      size: "Signature (470ml)", price: 380 },
+  espresso_tonic_regular:     { name: "Espresso Tonic",      size: "Regular (250ml)", price: 380 },
+  espresso_tonic_signature:   { name: "Espresso Tonic",      size: "Signature (470ml)", price: 450 }
 };
 
 // State
