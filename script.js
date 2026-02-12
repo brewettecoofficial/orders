@@ -8,7 +8,7 @@
 // ===== CONFIG =====
 const UPI_ID = "apoorvak999@oksbi";
 const SHEET_WEBHOOK_URL =
-  "https://script.google.com/macros/s/AKfycbwjx4taFxEhhBdMwfYdrnCXmi_aL-lONoM_hUtqEnKI8tG9Bbc71eG8uXTnZMmbw0g/exec";
+  "https://script.google.com/macros/s/AKfycbyLP9V6I7Fd8YRWBIEKkMmRh9PRMWtCxAHbOfjzYvVm4ES5pevxGMWKScTRZmSNOtrcCw/exec";
 const MAX_QTY = 5;
 
 // Menu with launch pricing
@@ -144,3 +144,4 @@ async function submitOrder() {
 
 // Initial render
 render();
+
