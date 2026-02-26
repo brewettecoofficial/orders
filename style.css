@@ -1,50 +1,96 @@
-:root{
-  --text:#111;
-  --muted:#666;
-  --border:#d9d9d9;
-  --bg:#fff;
-  --black:#111;
+:root {
+  --text: #111;
+  --muted: #666;
+  --border: #d9d9d9;
+  --bg: #fff;
+  --black: #111;
+  --accent: #d4a373; /* Subtle gold/coffee accent for the 'Brewing' state */
 }
-*{ box-sizing:border-box; }
-body{
-  margin:0;
+
+* { 
+  box-sizing: border-box; 
+}
+
+body {
+  margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  color:var(--text);
-  background:var(--bg);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.5;
 }
-.container{
+
+.container {
   max-width: 760px;
   margin: 0 auto;
   padding: 28px 18px 40px;
 }
-.hero{ margin-bottom: 22px; }
-.brand{
+
+/* HERO SECTION */
+.hero { 
+  margin-bottom: 22px; 
+}
+
+.brand {
   font-size: 56px;
   line-height: 1;
   margin: 0 0 10px;
   font-weight: 800;
+  letter-spacing: -1px;
 }
-.tagline{
+
+.tagline {
   margin: 0;
   color: var(--muted);
   font-size: 18px;
 }
-.card{
+
+/* CARD SYSTEM */
+.card {
   margin-top: 22px;
 }
-h2{
+
+h2 {
   font-size: 30px;
   margin: 0 0 14px;
   font-weight: 800;
 }
-h3{
-  margin: 0 0 14px;
+
+/* ORDER CLOSED / BREWING STATE */
+.brewing-card {
+  text-align: center;
+  padding: 60px 20px;
+  background: #fafafa;
+  border: 2px dashed var(--border);
+  border-radius: 16px;
+  margin-top: 30px;
 }
-.fields{
+
+.status-icon {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.window-box {
+  display: inline-block;
+  background: var(--black);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 20px;
+}
+
+/* FORM FIELDS */
+.fields {
   display: grid;
   gap: 14px;
 }
-input, textarea{
+
+input, textarea {
   width: 100%;
   padding: 18px 16px;
   border: 2px solid var(--border);
@@ -52,13 +98,22 @@ input, textarea{
   outline: none;
   font-size: 18px;
   font-family: inherit;
+  transition: border-color 0.2s;
 }
-textarea{ resize: vertical; min-height: 92px; }
 
-/* Menu Table */
+input:focus, textarea:focus {
+  border-color: var(--black);
+}
+
+textarea { 
+  resize: vertical; 
+  min-height: 92px; 
+}
+
+/* MENU TABLE */
 .menu-table {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 2.2fr 1fr 1fr;
   gap: 0;
   margin-top: 16px;
 }
@@ -72,7 +127,7 @@ textarea{ resize: vertical; min-height: 92px; }
 }
 
 .header-ml {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--muted);
   font-weight: 400;
   margin-top: 2px;
@@ -102,6 +157,7 @@ textarea{ resize: vertical; min-height: 92px; }
   border-bottom: 1px solid #e7e7e7;
 }
 
+/* STEPPER COMPONENT */
 .stepper {
   display: flex;
   border-radius: 8px;
@@ -119,6 +175,11 @@ textarea{ resize: vertical; min-height: 92px; }
   color: #fff;
   font-size: 20px;
   cursor: pointer;
+  transition: opacity 0.1s;
+}
+
+.stepper-btn:active {
+  opacity: 0.8;
 }
 
 .stepper-qty {
@@ -131,55 +192,47 @@ textarea{ resize: vertical; min-height: 92px; }
   background: #fff;
 }
 
-.total-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+/* TOTALS */
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   border-top: 2px solid var(--black);
   margin-top: 14px;
   padding-top: 14px;
 }
+
 .total-row-strong .total-label,
-.total-row-strong .total-amount{
+.total-row-strong .total-amount {
   font-weight: 800;
+  font-size: 20px;
 }
-.total-label{
-  font-size: 18px;
-  font-weight: 700;
-}
-.total-amount{
-  font-size: 18px;
-  font-weight: 700;
-}
-.qr-wrap{
+
+/* PAYMENT & QR */
+.qr-wrap {
   margin-top: 10px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 10px;
 }
-.qr{
+
+.qr {
   width: 280px;
   max-width: 100%;
   border-radius: 10px;
+  border: 1px solid var(--border);
 }
-.qr-caption{
-  color: var(--muted);
-  font-size: 14px;
-}
-.pay-links{
+
+.pay-links {
   margin-top: 14px;
-  display:flex;
-  flex-direction:column;
+  display: flex;
+  flex-direction: column;
   gap: 10px;
-  align-items:flex-start;
+  align-items: flex-start;
 }
-.link{
-  color: #1a0dab;
-  text-decoration: underline;
-  font-size: 16px;
-}
-.link-btn{
+
+.link-btn {
   background: none;
   border: none;
   padding: 0;
@@ -188,60 +241,73 @@ textarea{ resize: vertical; min-height: 92px; }
   text-decoration: underline;
   cursor: pointer;
 }
-.muted{
+
+.muted {
   color: var(--muted);
   font-size: 14px;
   min-height: 18px;
 }
-.note{
+
+.note {
   margin-top: 12px;
   color: var(--muted);
   font-size: 14px;
   line-height: 1.4;
 }
-.cta{
-  margin-top: 18px;
+
+/* CALL TO ACTION */
+.cta {
+  margin-top: 24px;
   width: 100%;
-  height: 58px;
+  height: 62px;
   border: none;
-  border-radius: 2px;
-  background: #111;
+  border-radius: 8px; /* Slightly more rounded for modern feel */
+  background: var(--black);
   color: #fff;
   font-size: 18px;
   font-weight: 700;
   cursor: pointer;
-}
-.cta:disabled{
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-.footer{
-  margin-top: 18px;
-  color: var(--muted);
+  transition: transform 0.1s;
 }
 
-/* Mobile responsive */
+.cta:active {
+  transform: scale(0.98);
+}
+
+.cta:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.footer {
+  margin-top: 40px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* MOBILE RESPONSIVE */
 @media (max-width: 600px) {
-  .brand{
+  .brand {
     font-size: 42px;
   }
   
+  .container {
+    padding: 20px 14px;
+  }
+
   .menu-table {
-    grid-template-columns: 1.8fr 1fr 1fr;
+    grid-template-columns: 1.6fr 1.1fr 1.1fr;
   }
   
   .table-header {
-    font-size: 12px;
-    padding: 10px 4px;
-  }
-  
-  .header-ml {
-    font-size: 10px;
+    font-size: 11px;
+    padding: 10px 2px;
   }
   
   .table-name,
   .table-stepper {
-    padding: 12px 4px;
+    padding: 12px 2px;
   }
   
   .name {
@@ -253,15 +319,11 @@ textarea{ resize: vertical; min-height: 92px; }
   }
   
   .stepper {
-    max-width: 95px;
+    max-width: 85px;
     height: 36px;
   }
   
   .stepper-btn {
     font-size: 18px;
-  }
-  
-  .stepper-qty {
-    font-size: 14px;
   }
 }
