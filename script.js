@@ -44,8 +44,8 @@ function checkBusinessHours() {
   if (!openSection || !closedSection) return;
 
   // Logic: Open if (Friday OR Saturday) AND (9 AM to 6:59 PM)
-  const isWeekendWindow = (day === 4 || day === 6);
-  const isWithinTime = (hour >= 9 && hour < 23);
+  const isWeekendWindow = (day === 5 || day === 6);
+  const isWithinTime = (hour >= 9 && hour < 19);
 
   if (isWeekendWindow && isWithinTime) {
     openSection.style.display = 'block';
@@ -171,5 +171,6 @@ async function submitOrder() {
 // ===== Initial Initialization =====
 checkBusinessHours();
 render();
+
 
 
