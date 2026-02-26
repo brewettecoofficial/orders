@@ -10,7 +10,7 @@
 const UPI_ID = "apoorvak999@oksbi";
 const SHEET_WEBHOOK_URL =
   "https://script.google.com/macros/s/AKfycbx7pLv3RSbc4bj2SrMKQgnqiXqgvpJxo-c6UGVKYex1-kjfLersTRQ2_OFeVNlkVpkllA/exec";
-const MAX_QTY = 5;
+const MAX_QTY = 3;
 
 // Menu with launch pricing
 const MENU = {
@@ -152,7 +152,7 @@ async function submitOrder() {
       body: JSON.stringify(payload)
     });
     if (!res.ok) throw new Error("Order failed");
-    alert("Order saved! ✅");
+    alert("Order placed! Your sip will be delivered soon.");
     // Reset
     for (const k in order) order[k] = 0;
     document.getElementById("customerName").value = "";
@@ -171,4 +171,5 @@ async function submitOrder() {
 // ===== Initial Initialization =====
 checkBusinessHours();
 render();
+
 
