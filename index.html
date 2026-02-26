@@ -10,191 +10,92 @@
 <body>
   <main class="container">
 
-    <!-- HERO -->
     <header class="hero">
       <h1 class="brand">Brewette Co.</h1>
       <p class="tagline">Your daily sip. Crafted in small batches.</p>
     </header>
 
-    <!-- CUSTOMER DETAILS -->
-    <section class="card">
-      <h2>Ordering for</h2>
-      <div class="fields">
-        <input id="customerName" type="text" placeholder="Your name" />
-        <input id="customerPhone" type="tel" placeholder="Phone number" />
-        <textarea id="customerAddress" rows="3" placeholder="Delivery address"></textarea>
-      </div>
+    <section id="order-closed" class="card" style="display: none; text-align: center; padding: 40px 20px;">
+      <h2 style="color: #d4a373;">We are currently brewing... 🧪</h2>
+      <p>Our small-batch kitchen is prepping for the weekend.</p>
+      <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
+      <p><strong>Next Launch Window:</strong><br>Friday & Saturday | 9:00 AM – 7:00 PM</p>
+      <p class="note">Follow our journey on Instagram for daily R&D updates.</p>
     </section>
 
-    <!-- MENU -->
-    <section class="card">
-      <h2>Menu</h2>
+    <div id="order-open" style="display: none;">
+      
+      <section class="card">
+        <h2>Ordering for</h2>
+        <div class="fields">
+          <input id="customerName" type="text" placeholder="Your name" />
+          <input id="customerPhone" type="tel" placeholder="Phone number" />
+          <textarea id="customerAddress" rows="3" placeholder="Delivery address"></textarea>
+        </div>
+      </section>
 
-      <div class="menu-table">
-        <!-- Header -->
-        <div class="table-header"></div>
-        <div class="table-header">
-          <div>Regular</div>
-          <div class="header-ml">250ml</div>
-        </div>
-        <div class="table-header">
-          <div>Signature</div>
-          <div class="header-ml">470ml</div>
-        </div>
+      <section class="card">
+        <h2>Menu</h2>
+        <div class="menu-table">
+          </div>
 
-        <!-- Caramella -->
-        <div class="table-name">
-          <div class="name">Caramella</div>
-          <div class="prices">₹380 / ₹430</div>
+        <div class="total-row total-row-strong">
+          <span class="total-label">Total</span>
+          <span class="total-amount" id="totalAmount">₹0</span>
         </div>
-        <div class="table-stepper">
-          <div class="stepper">
-            <button class="stepper-btn" data-item="caramella_regular" data-change="-1" type="button">−</button>
-            <div class="stepper-qty" id="qty-caramella_regular">0</div>
-            <button class="stepper-btn" data-item="caramella_regular" data-change="1" type="button">+</button>
-          </div>
-        </div>
-        <div class="table-stepper">
-          <div class="stepper">
-            <button class="stepper-btn" data-item="caramella_signature" data-change="-1" type="button">−</button>
-            <div class="stepper-qty" id="qty-caramella_signature">0</div>
-            <button class="stepper-btn" data-item="caramella_signature" data-change="1" type="button">+</button>
-          </div>
-        </div>
+        <p class="note">Prices are inclusive of packaging and delivery.</p>
+      </section>
 
-        <!-- Orange Cold Brew -->
-        <div class="table-name">
-          <div class="name">Orange Cold Brew</div>
-          <div class="prices">₹330 / ₹430</div>
+      <section class="card">
+        <h2>Payment</h2>
+        <div class="qr-wrap">
+          <img class="qr" src="gpay-qr.png" alt="Scan to pay via UPI" />
         </div>
-        <div class="table-stepper">
-          <div class="stepper">
-            <button class="stepper-btn" data-item="orange_coldbrew_regular" data-change="-1" type="button">−</button>
-            <div class="stepper-qty" id="qty-orange_coldbrew_regular">0</div>
-            <button class="stepper-btn" data-item="orange_coldbrew_regular" data-change="1" type="button">+</button>
-          </div>
+        <div class="pay-links">
+          <button class="link-btn" id="copyUpiBtn" type="button">Copy UPI ID</button>
+          <div class="muted" id="copyStatus"></div>
         </div>
-        <div class="table-stepper">
-          <div class="stepper">
-            <button class="stepper-btn" data-item="orange_coldbrew_signature" data-change="-1" type="button">−</button>
-            <div class="stepper-qty" id="qty-orange_coldbrew_signature">0</div>
-            <button class="stepper-btn" data-item="orange_coldbrew_signature" data-change="1" type="button">+</button>
-          </div>
-        </div>
+        <p class="note">Please complete payment before placing your order. Your order will be prepared fresh and shipped within 20 minutes.</p>
+      </section>
 
-        <!-- Matcha Latte-->
-        <div class="table-name">
-          <div class="name">Matcha Latte</div>
-          <div class="prices">₹390 / ₹490</div>
-        </div>
-        <div class="table-stepper">
-          <div class="stepper">
-            <button class="stepper-btn" data-item="oatmilk_matcha_regular" data-change="-1" type="button">−</button>
-            <div class="stepper-qty" id="qty-oatmilk_matcha_regular">0</div>
-            <button class="stepper-btn" data-item="oatmilk_matcha_regular" data-change="1" type="button">+</button>
-          </div>
-        </div>
-        <div class="table-stepper">
-          <div class="stepper">
-            <button class="stepper-btn" data-item="oatmilk_matcha_signature" data-change="-1" type="button">−</button>
-            <div class="stepper-qty" id="qty-oatmilk_matcha_signature">0</div>
-            <button class="stepper-btn" data-item="oatmilk_matcha_signature" data-change="1" type="button">+</button>
-          </div>
-        </div>
-
-        <!-- Earl Grey -->
-        <div class="table-name">
-          <div class="name">Mr. Earl Grey</div>
-          <div class="prices">₹360 / ₹430</div>
-        </div>
-        <div class="table-stepper">
-          <div class="stepper">
-            <button class="stepper-btn" data-item="earl_grey_regular" data-change="-1" type="button">−</button>
-            <div class="stepper-qty" id="qty-earl_grey_regular">0</div>
-            <button class="stepper-btn" data-item="earl_grey_regular" data-change="1" type="button">+</button>
-          </div>
-        </div>
-        <div class="table-stepper">
-          <div class="stepper">
-            <button class="stepper-btn" data-item="earl_grey_signature" data-change="-1" type="button">−</button>
-            <div class="stepper-qty" id="qty-earl_grey_signature">0</div>
-            <button class="stepper-btn" data-item="earl_grey_signature" data-change="1" type="button">+</button>
-          </div>
-        </div>
-
-        <!-- Iced Pour Over -->
-        <div class="table-name">
-          <div class="name">Iced Pour Over</div>
-          <div class="prices">₹320 / ₹380</div>
-        </div>
-        <div class="table-stepper">
-          <div class="stepper">
-            <button class="stepper-btn" data-item="iced_pourover_regular" data-change="-1" type="button">−</button>
-            <div class="stepper-qty" id="qty-iced_pourover_regular">0</div>
-            <button class="stepper-btn" data-item="iced_pourover_regular" data-change="1" type="button">+</button>
-          </div>
-        </div>
-        <div class="table-stepper">
-          <div class="stepper">
-            <button class="stepper-btn" data-item="iced_pourover_signature" data-change="-1" type="button">−</button>
-            <div class="stepper-qty" id="qty-iced_pourover_signature">0</div>
-            <button class="stepper-btn" data-item="iced_pourover_signature" data-change="1" type="button">+</button>
-          </div>
-        </div>
-
-        <!-- Espresso Tonic -->
-        <div class="table-name">
-          <div class="name">Espresso Tonic</div>
-          <div class="prices">₹380 / ₹450</div>
-        </div>
-        <div class="table-stepper">
-          <div class="stepper">
-            <button class="stepper-btn" data-item="espresso_tonic_regular" data-change="-1" type="button">−</button>
-            <div class="stepper-qty" id="qty-espresso_tonic_regular">0</div>
-            <button class="stepper-btn" data-item="espresso_tonic_regular" data-change="1" type="button">+</button>
-          </div>
-        </div>
-        <div class="table-stepper">
-          <div class="stepper">
-            <button class="stepper-btn" data-item="espresso_tonic_signature" data-change="-1" type="button">−</button>
-            <div class="stepper-qty" id="qty-espresso_tonic_signature">0</div>
-            <button class="stepper-btn" data-item="espresso_tonic_signature" data-change="1" type="button">+</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- TOTAL -->
-      <div class="total-row total-row-strong">
-        <span class="total-label">Total</span>
-        <span class="total-amount" id="totalAmount">₹0</span>
-      </div>
-
-      <p class="note">Prices are inclusive of packaging and delivery.</p>
-    </section>
-
-    <!-- PAYMENT -->
-    <section class="card">
-      <h2>Payment</h2>
-      <div class="qr-wrap">
-        <img class="qr" src="gpay-qr.png" alt="Scan to pay via UPI" />
-      </div>
-      <div class="pay-links">
-        <button class="link-btn" id="copyUpiBtn" type="button">Copy UPI ID</button>
-        <div class="muted" id="copyStatus"></div>
-      </div>
-      <p class="note">Please complete payment before placing your order. Your order will be prepared fresh and shipped within 20 minutes.</p>
-    </section>
-
-    <!-- CTA -->
-    <button class="cta" id="placeOrderBtn" type="button">
-      Place Order
-    </button>
+      <button class="cta" id="placeOrderBtn" type="button">
+        Place Order
+      </button>
+    </div>
 
     <footer class="footer"></footer>
   </main>
 
+  <script>
+    function checkBusinessHours() {
+      // Force IST for reliability
+      const now = new Date(new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"}));
+      const day = now.getDay(); // 5 = Fri, 6 = Sat
+      const hour = now.getHours();
+
+      const openSection = document.getElementById('order-open');
+      const closedSection = document.getElementById('order-closed');
+
+      // Logic: Open if (Friday OR Saturday) AND (9 AM to 6:59 PM)
+      const isWeekend = (day === 5 || day === 6);
+      const isWithinTime = (hour >= 9 && hour < 19);
+
+      if (isWeekend && isWithinTime) {
+        openSection.style.display = 'block';
+        closedSection.style.display = 'none';
+      } else {
+        openSection.style.display = 'block'; // Set to 'none' after testing
+        closedSection.style.display = 'block';
+        // Note: For your first test, I'd leave openSection as 'none' 
+        // to make sure the 'Closed' card looks good!
+        openSection.style.display = 'none'; 
+      }
+    }
+    
+    // Run immediately
+    checkBusinessHours();
+  </script>
+
   <script src="script.js"></script>
 </body>
 </html>
-
-
