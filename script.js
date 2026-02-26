@@ -1,7 +1,8 @@
 /**
  * Brewette ordering flow (static GitHub Pages)
- * - Stepper buttons update quantities for Regular & Signature sizes
- * - One total amount updates live
+ * - Time-gated access (Fri-Sat, 9AM-7PM IST)
+ * - Stepper buttons update quantities
+ * - Total amount updates live
  * - Place Order posts to Apps Script
  */
 
@@ -29,6 +30,31 @@ const MENU = {
 
 // State
 const order = Object.fromEntries(Object.keys(MENU).map(k => [k, 0]));
+
+// ===== TIME GATE LOGIC =====
+function checkBusinessHours() {
+  // Forces calculation based on IST (Asia/Kolkata)
+  const now = new Date(new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"}));
+  const day = now.getDay(); // 5 = Fri, 6 = Sat
+  const hour = now.getHours();
+
+  const openSection = document.getElementById('order-open');
+  const closedSection = document.getElementById('order-closed');
+
+  if (!openSection || !closedSection) return;
+
+  // Logic: Open if (Friday OR Saturday) AND (9 AM to 6:59 PM)
+  const isWeekendWindow = (day === 5 || day === 6);
+  const isWithinTime = (hour >= 9 && hour < 19);
+
+  if (isWeekendWindow && isWithinTime) {
+    openSection.style.display = 'block';
+    closedSection.style.display = 'none';
+  } else {
+    openSection.style.display = 'none';
+    closedSection.style.display = 'block';
+  }
+}
 
 // ===== Helpers =====
 function formatINR(n) {
@@ -113,7 +139,7 @@ async function submitOrder() {
     items,
     totalAmount: computeTotal(),
     createdAt: new Date().toISOString()
-  };
+  }
 
   const btn = document.getElementById("placeOrderBtn");
   btn.disabled = true;
@@ -142,7 +168,6 @@ async function submitOrder() {
   }
 }
 
-// Initial render
+// ===== Initial Initialization =====
+checkBusinessHours();
 render();
-
-
