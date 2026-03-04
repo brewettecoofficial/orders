@@ -18,8 +18,8 @@ const MENU = {
   caramella_signature:        { name: "Caramella",           size: "Signature (470ml)", price: 430 },
   orange_coldbrew_regular:    { name: "Orange Cold Brew",    size: "Regular (250ml)", price: 330 },
   orange_coldbrew_signature:  { name: "Orange Cold Brew",    size: "Signature (470ml)", price: 430 },
-  oatmilk_matcha_regular:     { name: "Oatmilk Matcha Latte", size: "Regular (250ml)", price: 390 },
-  oatmilk_matcha_signature:   { name: "Oatmilk Matcha Latte", size: "Signature (470ml)", price: 490 },
+  oatmilk_matcha_regular:     { name: "Matcha Latte", size: "Regular (250ml)", price: 380 },
+  oatmilk_matcha_signature:   { name: "Matcha Latte", size: "Signature (470ml)", price: 480 },
   earl_grey_regular:          { name: "Earl Grey Milk Tea",  size: "Regular (250ml)", price: 360 },
   earl_grey_signature:        { name: "Earl Grey Milk Tea",  size: "Signature (470ml)", price: 430 },
   iced_pourover_regular:      { name: "Iced Pour Over",      size: "Regular (250ml)", price: 320 },
@@ -171,6 +171,7 @@ async function submitOrder() {
 // ===== Initial Initialization =====
 checkBusinessHours();
 render();
+
 
 
 
